@@ -1,15 +1,11 @@
 def mdc(a, b):
-    divisores_de_a = [x for x in range(1, a+1) if (x % 2 == 0)]
-    divisores_de_b = [y for y in range(1, b+1) if (y % 2 == 0)]
+    divisores_de_a = [x for x in range(1, a) if (x % 2 == 0)]
+    divisores_de_b = [y for y in range(1, b) if (y % 2 == 0)]
 
     if len(divisores_de_a) >= len(divisores_de_b):
         tamanho = int(len(divisores_de_b))
-        maior = divisores_de_a
-        menor = divisores_de_b
     else:
         tamanho = int(len(divisores_de_a))
-        maior = divisores_de_b
-        menor = divisores_de_a
 
     multiplos_de_a = []
     multiplos_de_b = []
