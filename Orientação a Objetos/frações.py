@@ -5,6 +5,8 @@
 # Métodos
 # somar; subtrair; multiplicar; dividir; inverter; negar; simplificar
 
+from mdc import mdc
+
 class Fração:
     def __init__(self, numer, denom):
         self.numerador = numer
@@ -14,15 +16,17 @@ class Fração:
         else:
             self.denominador = denom
 
+    def mdc_(self):
+        return mdc(self.numerador, self.denominador)
+
     def somar(self, outra):
         if self.denominador == outra.denominador:
             denom = self.denominador
             numer = self.numerador + outra.numerador
-            return numer / denom
         else:
             numer = self.numerador*outra.denominador + self.denominador*outra.numerador
             denom = self.denominador*outra.denominador
-            return Fração(numer, denom)
+        return Fração(numer, denom)
 
     def subtrair(self, outra):
         return self.somar(outra.negar())
@@ -42,16 +46,35 @@ class Fração:
         return Fração(-self.numerador, self.denominador)
 
     def simplificar(self):
-        pass
+        if self.denominador % self.numerador == 0:
+            numerador = 1
+            denominador = int(self.denominador / self.numerador)
+        else:
+            if self.denominador >= self.numerador:
+                maior = self.denominador
+                menor = self.numerador
+            else:
+                maior = self.numerador
+                menor = self.denominador
+
+            if maior % menor == 0 or menor % maior == 0:
+                while (maior % menor != 0) and menor != 0: menor -= 1
+                numerador = int(menor / 2)
+                denominador = int(maior / maior)
+            else:
+                numerador = int(self.numerador / mdc(24, 32))
+                denominador = int(self.denominador / mdc(24, 32))
+
+        return Fração(numerador, denominador)
 
     # def __str__(self):
     #     return f'{self.numerador}/{self.denominador}'
 
     def __repr__(self):
         if len(str(self.numerador)) > len(str(self.denominador)):
-            tamanho = len(str(self.numerador))
+            tamanho = len(str(self.numerador)) + 2
         else:
-            tamanho = len(str(self.denominador))
+            tamanho = len(str(self.denominador)) + 2
 
         underlines = tamanho * '-'
         representação = f'{self.numerador:^{tamanho}}\n{underlines}\n{self.denominador:^{tamanho}}'
@@ -61,5 +84,32 @@ class Fração:
 if __name__ == '__main__':
     a = Fração(3, 2)
     b = Fração(6, 5)
-    resultado = Fração.multiplicar(a, b)
-    print(resultado)
+    resultado = Fração.somar(a, b)
+    print(f'[Soma]\n{resultado}', end='\n\n')
+
+    c = Fração(3, 6)
+    d = Fração(1, 6)
+    resultado = Fração.subtrair(c, d)
+    print(f'[Subtração]\n{resultado}', end='\n\n')
+
+    e = Fração(3, 5)
+    f = Fração(12, 5)
+    resultado = Fração.multiplicar(e, f)
+    print(f'[Multiplicação]\n{resultado}', end='\n\n')
+
+    g = Fração(2, 3)
+    h = Fração(7, 5)
+    resultado = Fração.dividir(g, h)
+    print(f'[Divisão]\n{resultado}', end='\n\n')
+
+    i = Fração(4, 7)
+    resultado = Fração.inverter(i)
+    print(f'[Inversão]\n{resultado}', end='\n\n')
+
+    j = Fração(6, 2)
+    resultado = Fração.negar(j)
+    print(f'[Negação]\n{resultado}', end='\n\n')
+
+    k = Fração(24, 32)
+    resultado = Fração.simplificar(k)
+    print(f'[Simplificação]\n{resultado}')
