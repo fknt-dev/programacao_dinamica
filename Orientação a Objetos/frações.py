@@ -44,6 +44,14 @@ class Fração:
     def simplificar(self):
         pass
 
-a = Fração(4, 5)
-b = Fração(-2, 7)
-resultado = a.multiplicar(b)
+    # def __str__(self):
+    #     return f'{self.numerador}/{self.denominador}'
+
+    def __repr__(self):
+        return f'Fração({self.numerador}, {self.denominador})'
+
+if __name__ == '__main__':
+    a = Fração(3, 2)
+    b = Fração(6, 5)
+    resultado = Fração.multiplicar(a, b)
+    print(resultado)
