@@ -2,9 +2,9 @@ def mdc(a, b):
     multiplos_de_a = [x for x in range(1, a + 1) if ((a / x) == int(a / x))]
     multiplos_de_b = [y for y in range(1, b + 1) if ((b / y) == int(b / y))]
 
-    novo = [num for num in multiplos_de_a if num in multiplos_de_b]
+    divisores_comuns = [num for num in multiplos_de_a if num in multiplos_de_b]
+    maior_divisor_comum = divisores_comuns[len(divisores_comuns) - 1]
 
-    maior_divisor_comum = novo[len(novo) - 1]
     return maior_divisor_comum
 
 if __name__ == '__main__':
