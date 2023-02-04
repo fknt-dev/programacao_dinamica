@@ -8,33 +8,33 @@
 from mdc import mdc
 
 class Fração:
-    def __init__(self, numer, denom):
-        self.numerador = numer
+    def __init__(self, numerador, denominador):
+        self.numerador = numerador
 
-        if denom == 0:
+        if denominador == 0:
             self.denominador = 1
         else:
-            self.denominador = denom
+            self.denominador = denominador
 
-    def mdc_(self):
+    def mdc(self):
         return mdc(self.numerador, self.denominador)
 
     def somar(self, outra):
         if self.denominador == outra.denominador:
-            denom = self.denominador
-            numer = self.numerador + outra.numerador
+            denominador = self.denominador
+            numerador = self.numerador + outra.numerador
         else:
-            numer = self.numerador*outra.denominador + self.denominador*outra.numerador
-            denom = self.denominador*outra.denominador
-        return Fração(numer, denom)
+            numerador = self.numerador*outra.denominador + self.denominador*outra.numerador
+            denominador = self.denominador*outra.denominador
+        return Fração(numerador, denominador)
 
     def subtrair(self, outra):
         return self.somar(outra.negar())
 
     def multiplicar(self, outra):
-        numer = self.numerador * outra.numerador
+        numerador = self.numerador * outra.numerador
         denon = self.denominador * outra.denominador
-        return Fração(numer, denon)
+        return Fração(numerador, denon)
 
     def dividir(self, outra):
         return self.multiplicar(outra.inverter())
@@ -49,8 +49,8 @@ class Fração:
         return mdc(self.numerador, self.denominador)
 
     def simplificar(self):
-        numerador = int(self.numerador / Fração.mdc_(self))
-        denominador = int(self.denominador / Fração.mdc_(self))
+        numerador = int(self.numerador / Fração.mdc(self))
+        denominador = int(self.denominador / Fração.mdc(self))
         return Fração(numerador, denominador)
 
     def __repr__(self):
