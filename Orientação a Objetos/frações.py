@@ -48,7 +48,15 @@ class Fração:
     #     return f'{self.numerador}/{self.denominador}'
 
     def __repr__(self):
-        return f'Fração({self.numerador}, {self.denominador})'
+        if len(str(self.numerador)) > len(str(self.denominador)):
+            tamanho = len(str(self.numerador))
+        else:
+            tamanho = len(str(self.denominador))
+
+        underlines = tamanho * '-'
+        representação = f'{self.numerador:^{tamanho}}\n{underlines}\n{self.denominador:^{tamanho}}'
+
+        return representação
 
 if __name__ == '__main__':
     a = Fração(3, 2)
