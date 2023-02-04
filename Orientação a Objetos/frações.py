@@ -45,9 +45,6 @@ class Fração:
     def negar(self):
         return Fração(-self.numerador, self.denominador)
 
-    def mdc(self):
-        return mdc(self.numerador, self.denominador)
-
     def simplificar(self):
         numerador = int(self.numerador / Fração.mdc(self))
         denominador = int(self.denominador / Fração.mdc(self))
