@@ -45,6 +45,9 @@ class Fração:
     def negar(self):
         return Fração(-self.numerador, self.denominador)
 
+    def mdc(self):
+        return mdc(self.numerador, self.denominador)
+
     def simplificar(self):
         if self.denominador % self.numerador == 0:
             numerador = 1
@@ -62,13 +65,10 @@ class Fração:
                 numerador = int(menor / 2)
                 denominador = int(maior / maior)
             else:
-                numerador = int(self.numerador / mdc(24, 32))
-                denominador = int(self.denominador / mdc(24, 32))
+                numerador = int(self.numerador / Fração.mdc(self))
+                denominador = int(self.denominador / Fração.mdc(self))
 
         return Fração(numerador, denominador)
-
-    # def __str__(self):
-    #     return f'{self.numerador}/{self.denominador}'
 
     def __repr__(self):
         if len(str(self.numerador)) > len(str(self.denominador)):
