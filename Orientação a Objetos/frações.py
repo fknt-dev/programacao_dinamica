@@ -71,13 +71,22 @@ class Fração:
         return Fração(numerador, denominador)
 
     def __repr__(self):
-        if len(str(self.numerador)) > len(str(self.denominador)):
-            tamanho = len(str(self.numerador)) + 2
+        numerador = self.numerador
+        denominador = self.denominador
+
+        if len(str(numerador)) > len(str(denominador)):
+            tamanho = len(str(numerador)) + 2
         else:
-            tamanho = len(str(self.denominador)) + 2
+            tamanho = len(str(denominador)) + 2
 
         underlines = tamanho * '-'
-        representação = f'{self.numerador:^{tamanho}}\n{underlines}\n{self.denominador:^{tamanho}}'
+
+        if numerador < 0 and denominador >= 1:
+            representação = f'{numerador:^{tamanho}}\n{underlines}\n{denominador:^{tamanho + 1}}'
+        elif denominador < 0 and numerador >= 1:
+            representação = f'{numerador:^{tamanho + 1}}\n{underlines}\n{denominador:^{tamanho}}'
+        else:
+            representação = f'{numerador:^{tamanho}}\n{underlines}\n{denominador:^{tamanho}}'
 
         return representação
 
